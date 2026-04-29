@@ -3,6 +3,11 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "bun index.ts",
+    "start": "bun dist/index.js",
+    "build": "bun build index.ts --outdir dist --target node18 --format cjs"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
@@ -10,8 +15,19 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@google/genai": "^1.50.1",
+    "@prisma/adapter-libsql": "^7.8.0",
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
     "@tavily/core": "^0.7.2",
-    "express": "^5.2.1"
+    "@types/bcrypt": "^6.0.0",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcrypt": "^6.0.0",
+    "express": "^5.2.1",
+    "groq-sdk": "^0.5.0",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.20.0",
+    "prisma": "^7.8.0",
+    "zod": "^4.3.6"
   }
 }
