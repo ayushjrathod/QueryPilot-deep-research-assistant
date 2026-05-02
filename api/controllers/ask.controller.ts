@@ -3,11 +3,12 @@ import { tavily } from "@tavily/core";
 import { GoogleGenAI } from "@google/genai";
 import express from "express";
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_MODEL_ID = process.env.GEMINI_MODEL_ID;
+const GOOGLE_CLOUD_PROJECT = process.env.GOOGLE_CLOUD_PROJECT;
+const GOOGLE_CLOUD_LOCATION = process.env.GOOGLE_CLOUD_LOCATION || "global";
 
-if(!GEMINI_API_KEY) {
-  throw new Error("GEMINI_API_KEY is not set");
+if (!GOOGLE_CLOUD_PROJECT) {
+  throw new Error("GOOGLE_CLOUD_PROJECT is not set");
 }
 
 export const init = async () => {
@@ -16,7 +17,9 @@ export const init = async () => {
   });
 
   const llmClient = new GoogleGenAI({
-    apiKey: GEMINI_API_KEY,
+    vertexai: true,
+    project: GOOGLE_CLOUD_PROJECT,
+    location: GOOGLE_CLOUD_LOCATION,
   });
 
   return { webSearchClient, llmClient };
